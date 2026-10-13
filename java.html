@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Society</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; }
+        .error { color: red; font-weight: bold; display: none; margin-top: 10px; }
+        .success { color: green; font-weight: bold; display: none; margin-top: 10px; }
+        input { padding: 10px; font-size: 16px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h2>SECRET SOCIETY</h2>
+    <p>Welcome to the Secret Society. This is a place where only the chosen few can enter. If you are reading this, you have been selected to join our exclusive group.</p>
+    <p>To gain access, you must solve the following riddle:</p>
+    <p><strong>Riddle:</strong> I speak without a mouth and hear without ears. I have no body, but I come alive with the wind. What am I?</p>
+    <p>Once you have the answer, please enter it below to gain access:</p>
+    
+    <form id="riddleForm">
+        <input type="text" id="answer" placeholder="Enter your answer here" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <p id="message" class="error"></p>
+
+    <script>
+        document.getElementById('riddleForm').addEventListener('submit', function(event) {
+            // Prevent the form from refreshing the page
+            event.preventDefault();
+
+            // Get the user's input and clean it (remove extra spaces, make lowercase)
+            const userInput = document.getElementById('answer').value.trim().toLowerCase();
+            const messageElement = document.getElementById('message');
+
+            // The correct answer is "echo"
+            if (userInput === 'echo' || userInput === 'an echo') {
+                messageElement.textContent = "Access Granted. Welcome to the Secret Society.";
+                messageElement.className = "success";
+                messageElement.style.display = "block";
+                
+                // Optional: Redirect or reveal hidden content here
+                // window.location.href = "secret_page.html"; 
+            } else {
+                messageElement.textContent = "Access Denied. That is not the correct answer.";
+                messageElement.className = "error";
+                messageElement.style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>
